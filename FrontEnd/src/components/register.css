@@ -1,0 +1,33 @@
+.regForm{
+   
+    background-image: url('../images/bg.png');
+    
+}
+label{
+    text-align: left !important;
+}
+.card-header{
+    text-align: center;
+    background-color: #047e49;
+    border-radius: 10px 10px 0px 0px  !important;
+    border: 1px solid white;
+}
+.regFooter{
+    text-align: center;
+}
+a{
+    color:#047e49
+}
+
+.regForm .card-footer{
+    background-color:#0a7647;
+    border-radius: 0px 0px 10px 10px;
+    border: 1px solid white;
+}
+@media (max-width:767px) {
+    .login{
+        position: relative;
+        top:150px;
+    }
+    
+}

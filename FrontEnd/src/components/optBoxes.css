@@ -1,0 +1,17 @@
+.myicon{
+        font-size: 30px;
+        margin-top: 4px;
+    }
+.row{
+    display: flex;
+    justify-content: center;
+  
+}
+b{
+    color: rgb(0, 142, 80) !important;
+}
+@media (min-width:501px) and (max-width:900px){
+    .myicon{
+        font-size: 25px;
+    }
+}
