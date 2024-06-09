@@ -14,7 +14,7 @@ export default function Home() {
     const handleSTUsubmit=(e)=>{
         e.preventDefault();
         // console.log(formdata)1
-        axios.post("https://e-leave-hub-back.vercel.app/handle_student_login",formdata).then((res)=>{
+        axios.post("https://e-leave-hub-backend.vercel.app/handle_student_login",formdata).then((res)=>{
         alert(res.data.msg)
         const id=(res.data.id)
         if(res.data.msg==='Success'){
@@ -31,7 +31,7 @@ export default function Home() {
     const handleHODsubmit=(e)=>{
         e.preventDefault();
         // console.log(formdata)1
-        axios.post("https://e-leave-hub-back.vercel.app/handle_hod_login",hoddata).then((res)=>{
+        axios.post("https://e-leave-hub-backend.vercel.app/handle_hod_login",hoddata).then((res)=>{
         alert(res.data.msg)
         const id=(res.data.id)
         if(res.data.msg==='Success'){

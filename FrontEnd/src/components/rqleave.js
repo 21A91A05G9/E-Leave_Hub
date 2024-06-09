@@ -19,7 +19,7 @@ function Rqleave(props) {
     const handlesubmit = (e) => {
         e.preventDefault();
         console.log(formdata);
-        axios.post("https://e-leave-hub-back.vercel.app/formdata", formdata).then((res) => {
+        axios.post("https://e-leave-hub-backend.vercel.app/formdata", formdata).then((res) => {
             alert(res.data.msg);
             if (res.data.msg === 'Email sent successfully to your hod') {
                 nav('/studentdashboard/' + id);

@@ -18,7 +18,7 @@ function HODregister() {
 
     function handleHODreg(e) {
         e.preventDefault();
-        axios.post("https://e-leave-hub-back.vercel.app/handle_hod_reg", hoddata)
+        axios.post("https://e-leave-hub-backend.vercel.app/handle_hod_reg", hoddata)
             .then((res) => {
                 alert(res.data.msg);
                 if (res.data.msg === 'submitted') nav('/hodlogin');
