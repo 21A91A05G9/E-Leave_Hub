@@ -7,7 +7,7 @@ export default function Studiv(props) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => { 
-        axios.post("http://localhost:5001/showdata/" + props.id)
+        axios.post("e-leave-hub-back.vercel.app/showdata/" + props.id)
             .then((res) => {
                 setData(res.data);
                 setLoading(false);
