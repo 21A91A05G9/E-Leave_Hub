@@ -11,7 +11,7 @@ import multer from "multer";
 const app = express();
 app.use(bodyparser.json());
 app.use(cors({
-  origin: ['http://localhost:3000','https://e-leave-hub-fron.vercel.app/'], // Allow requests from this origin
+  origin: ['http://localhost:3000','https://e-leave-hub-fron.vercel.app'], // Allow requests from this origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true // Enable set cookie from the server
 }));
