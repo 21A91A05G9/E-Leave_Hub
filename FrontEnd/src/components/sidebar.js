@@ -15,7 +15,7 @@ export default function Sidebar({ id, to, usr, userType }) {
         try {
             const formData = new FormData();
             formData.append("myfile", selectedFile);
-            const res = await axios.post(`e-leave-hub-back.vercel.app/filedata/${id}`, formData);
+            const res = await axios.post(`https://e-leave-hub-back.vercel.app/filedata/${id}`, formData);
             alert(res.data.msg);
 
             // Create a Blob object from selected file

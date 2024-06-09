@@ -20,7 +20,7 @@ export default function Hod() {
     useEffect(() => {
         const fetchHodDetails = async () => {
             try {
-                const hodResponse = await axios.post(`e-leave-hub-back.vercel.app/findhod/${id}`);
+                const hodResponse = await axios.post(`https://e-leave-hub-back.vercel.app/findhod/${id}`);
                 sethod(hodResponse.data);
                 console.log('HoD details:', hodResponse.data);
             } catch (err) {
@@ -31,9 +31,9 @@ export default function Hod() {
         const fetchCounts = async () => {
             try {
                 // const [acceptResponse, rejectResponse, pendingResponse] = await Promise.all([
-                //     axios.post(`e-leave-hub-back.vercel.app/countupdate1/${id}`),
-                //     axios.post(`e-leave-hub-back.vercel.app/countupdate0/${id}`),
-                //     axios.post(`e-leave-hub-back.vercel.app/countupdate-1/${id}`)
+                //     axios.post(`https://e-leave-hub-back.vercel.app/countupdate1/${id}`),
+                //     axios.post(`https://e-leave-hub-back.vercel.app/countupdate0/${id}`),
+                //     axios.post(`https://e-leave-hub-back.vercel.app/countupdate-1/${id}`)
                 // ]);
                 seta(0);
                 setr(0);

@@ -22,10 +22,10 @@ export default function Student() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const studentRes = await axios.post(`e-leave-hub-back.vercel.app/findstudent/${id}`);
-                const acceptedRes = await axios.post(`e-leave-hub-back.vercel.app/countupdate1/${id}`);
-                const rejectedRes = await axios.post(`e-leave-hub-back.vercel.app/countupdate0/${id}`);
-                const pendingRes = await axios.post(`e-leave-hub-back.vercel.app/countupdate-1/${id}`);
+                const studentRes = await axios.post(`https://e-leave-hub-back.vercel.app/findstudent/${id}`);
+                const acceptedRes = await axios.post(`https://e-leave-hub-back.vercel.app/countupdate1/${id}`);
+                const rejectedRes = await axios.post(`https://e-leave-hub-back.vercel.app/countupdate0/${id}`);
+                const pendingRes = await axios.post(`https://e-leave-hub-back.vercel.app/countupdate-1/${id}`);
 
                 setStudent(studentRes.data);
                 setAcceptedCount(acceptedRes.data);

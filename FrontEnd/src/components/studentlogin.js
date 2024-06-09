@@ -14,7 +14,7 @@ export default function StudentLogin() {
 
     const handleSTUsubmit = (e) => {
         e.preventDefault();
-        axios.post("e-leave-hub-back.vercel.app/handle_student_login", formdata)
+        axios.post("https://e-leave-hub-back.vercel.app/handle_student_login", formdata)
             .then((res) => {
                 const id = res.data.id;
                 if (res.data.msg === 'Success') {

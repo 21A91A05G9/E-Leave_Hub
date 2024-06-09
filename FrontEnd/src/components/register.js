@@ -21,7 +21,7 @@ function Register(){
     function handleSTUreg(e){
         e.preventDefault();
         // console.log(formdata)
-        axios.post("e-leave-hub-back.vercel.app/handle_student_reg", formdata)
+        axios.post("https://e-leave-hub-back.vercel.app/handle_student_reg", formdata)
         .then((res) => {
           if (res.data.msg === 'submitted') navigate('/studentlogin');
           else if (res.data.msg === "Enter valid details") setStr("Enter valid details");

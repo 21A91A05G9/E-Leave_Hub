@@ -13,7 +13,7 @@ export default function Hodaccept() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post(`e-leave-hub-back.vercel.app/getdata/${id}`);
+                const response = await axios.post(`https://e-leave-hub-back.vercel.app/getdata/${id}`);
                 setArr(response.data);
                 setLoading(false);
             } catch (error) {
@@ -29,7 +29,7 @@ export default function Hodaccept() {
         const con = window.confirm("Do you want to accept?");
         if (con) {
             try {
-                await axios.put(`e-leave-hub-back.vercel.app/set1/${reqId}`);
+                await axios.put(`https://e-leave-hub-back.vercel.app/set1/${reqId}`);
                 // Optionally, update the UI after accepting
             } catch (error) {
                 console.error("Error accepting request:", error);
@@ -41,7 +41,7 @@ export default function Hodaccept() {
         const con = window.confirm("Do you want to reject?");
         if (con) {
             try {
-                await axios.put(`e-leave-hub-back.vercel.app/set0/${reqId}`);
+                await axios.put(`https://e-leave-hub-back.vercel.app/set0/${reqId}`);
                 // Optionally, update the UI after rejecting
             } catch (error) {
                 console.error("Error rejecting request:", error);
