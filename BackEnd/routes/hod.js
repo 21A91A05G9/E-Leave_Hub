@@ -128,7 +128,7 @@ router.put('/accept/:id', async (req, res) => {
       return res.status(404).json({ error: "Document not found" });
     }
 
-    // Send email logic here
+    // Send email implemetation
     const user = await form.findOne({ _id: id });
     // sendEmail(user.email, 'ACCEPTED', user.name, user.reason);
 
@@ -148,7 +148,7 @@ router.put('/reject/:id', async (req, res) => {
       return res.status(404).json({ error: "Document not found" });
     }
 
-    // Send email logic here
+    // Send email implemtation
     const user = await form.findOne({ _id: id });
 
     
