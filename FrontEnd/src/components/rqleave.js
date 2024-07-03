@@ -25,7 +25,7 @@ function Rqleave(props) {
     const btn = document.getElementsByClassName("btn")[0];
     btn.disabled = true;
 
-    await axios.post("http://localhost:5001/formdata", formdata).then((res) => {
+    await axios.post("https://e-leave-hub.vercel.app/formdata", formdata).then((res) => {
       alert(res.data.msg);
       if (res.data.msg === "Email sent successfully to your hod") {
         nav(`/studentDashboard/${id}`);

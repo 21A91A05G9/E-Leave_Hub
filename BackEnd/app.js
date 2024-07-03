@@ -37,7 +37,7 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
   .then(() => console.log("Connected to Database & Listening to localhost 5001"))
   .catch((err) => console.log(err));
 
-  
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -54,8 +54,8 @@ app.post('/formdata', async (req, res, next) => {
     const reqId = user._id
     const f = new form({name,rollnum,fdate,tdate,email, hodEmail, reason,count});
 
-    const accept = `http://localhost:5001/dashboard/hod/accept/${reqId}`;
-    const reject = `http://localhost:5001/dashboard/hod/reject/${reqId}`
+    const accept = `https://e-leave-hub.vercel.app/dashboard/hod/accept/${reqId}`;
+    const reject = `https://e-leave-hub.vercel.app/dashboard/hod/reject/${reqId}`
     await f.save();
     const transporter = nodemailer.createTransport({
       service: 'gmail',

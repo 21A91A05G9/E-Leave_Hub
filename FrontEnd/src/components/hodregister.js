@@ -19,7 +19,7 @@ function HODregister() {
   function handleHODreg(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5001/auth/hod/register", hoddata)
+      .post("https://e-leave-hub.vercel.app/auth/hod/register", hoddata)
       .then((res) => {
         if (res.data.msg === "Successfully Registered") nav("/hodlogin");
         else if (res.data.msg === "fill all details")

@@ -37,7 +37,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
       formData.append("myfile", selectedFile);
       formData.append("user", usr);
       const res = await axios.post(
-        `http://localhost:5001/filedata/${id}`,
+        `https://e-leave-hub.vercel.app/filedata/${id}`,
         formData
       );
 
@@ -146,7 +146,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
                 <>
                   {imageUrl ? (
                     <img
-                      src={`http://localhost:5001/${imageUrl}`}
+                      src={`https://e-leave-hub.vercel.app/${imageUrl}`}
                       alt="Profile"
                       className="profileicon circular-image"
                     />
