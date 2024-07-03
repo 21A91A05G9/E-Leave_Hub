@@ -20,7 +20,7 @@ const app=express();
 app.use(bodyParser.json())  // capture request
 
 app.use(cors({
-  origin: ['http://localhost:3000'], // Allow requests from this origin
+  origin: ['http://localhost:3000','https://e-leave-hub-frontend.vercel.app'], // Allow requests from this origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true // Enable set cookie from the server
 }));
