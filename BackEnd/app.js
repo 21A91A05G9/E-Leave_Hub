@@ -131,14 +131,22 @@ const upload = multer({ storage: storage });
 app.post('/filedata/:id', upload.single('myfile'), async (req, res, next) => {
   const _id = req.params.id;
   const prof = (req.file) ? req.file.path : null;
-  ;
-  if (prof != null) {
-    if(req.body.user === 'hod') await hoddetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
-    else await studentdetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
-    console.log(prof);
-    res.send({ msg: "success", imageUrl : prof });
-  } else {
-    res.send({ msg: "select an image to upload" , imageUrl : null});
+  
+  try {
+    if (prof) {
+      if (req.body.user === 'hod') {
+        await hoddetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
+      } else {
+        await studentdetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
+      }
+      console.log(prof);
+      res.send({ msg: "success", imageUrl: prof });
+    } else {
+      res.status(400).send({ msg: "select an image to upload", imageUrl: null });
+    }
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    res.status(500).send({ msg: "Server error", error: error.message });
   }
 });
 
