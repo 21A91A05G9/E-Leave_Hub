@@ -42,7 +42,7 @@ router.post(
       if (getHod) return res.send({ msg: "Already exits" }); // chack by   this way also
 
       var token = jwt.sign({ id: hod._id }, JWT_SECRET);
-      console.log(token);
+      // console.log(token);
       try {
         await hod.save(); // error means email exists
         return res.send({ msg: "Successfully Registered", Hod: hod });
@@ -68,7 +68,7 @@ router.post(
     }
     try {
       const { email, password } = req.body;
-      console.log(email, password);
+      // console.log(email, password);
       const hod = await Hod.findOne({ email: email });
       if (!hod) return res.send({ msg: "email not exits" }); // chack by this way also
 
@@ -85,7 +85,7 @@ router.post(
 
 router.get("/requestCount/:id", async (req, res) => {
   const _id = req.params.id;
-  console.log(_id);
+  // console.log(_id);
   try {
     const hod = await Hod.findOne({ _id });
     if (!hod) return res.status(404).json({ error: "User not found" });
@@ -134,7 +134,7 @@ router.put('/accept/:id', async (req, res) => {
 
     res.send({ message: 'Document updated successfully' });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ error: "An error occurred" });
   }
 });
@@ -156,7 +156,7 @@ router.put('/reject/:id', async (req, res) => {
 
     res.send({ message: 'Document updated successfully' });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ error: "An error occurred" });
   }
 });

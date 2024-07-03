@@ -44,7 +44,7 @@ router.post(
       if (getStudent) return res.send({ msg: "Already exits" }); // chack by   this way also
 
       var token = jwt.sign({ id: student._id }, JWT_SECRET);
-      console.log(token);
+      // console.log(token);
       try {
         await student.save(); // error means email exists
         return res.send({ msg: "Successfully Registered", student: student });
@@ -79,7 +79,7 @@ router.post(
       const checkPassword = await bcrypt.compare(password, student.password);
       if (!checkPassword) return res.send({ msg: "wrong password" });
       const token = jwt.sign({ id: student._id }, JWT_SECRET);
-      console.log(token)
+      // console.log(token)
       return res.send({
         msg: "sucessfully login",
         token: token,

@@ -5,18 +5,33 @@ import Hodaccept from "./hodaccept";
 import HodDashboard from "./hodDashboard";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 export default function Hod() {
+  const navigate = useNavigate();
   const usr = JSON.parse(sessionStorage.getItem("user"));
   const id = usr ? usr._id : null;
+
   const [acceptedCount, setAcceptCount] = useState(0);
   const [rejectedCount, setRejectedCount] = useState(0);
   const [pendingCount, setPendingCount] = useState(0);
   const [user, setUser] = useState({});
   const [form, setForm] = useState([]);
-  const navigate = useNavigate();
+  const [sidebar, setSidebar] = useState("dash");
+
+
   useEffect(() => {
+    if (user !== null) {
+      Object.keys(user).length === 9 ? setUser("hod") : setUser("student");
+    }
+  }, [user]); 
+  
+  useEffect(() => {
+    if (!usr) {
+      navigate("/");
+      return;
+    }
+   
     const fetchData = async () => {
-        
       try {
         const res = await axios.get(
           `http://localhost:5001/dashboard/hod/requestCount/${id}`
@@ -32,11 +47,12 @@ export default function Hod() {
     };
 
     fetchData();
-  }, [id]);
-  const [sidebar, setSidebar] = useState("dash");
+  }, [id, usr, navigate]);
+
   const renderReq = () => {
     setSidebar("req");
   };
+
   const renderDash = () => {
     setSidebar("dash");
   };
@@ -69,7 +85,7 @@ export default function Hod() {
           </div>
         </div>
       ) : (
-        navigate("/")
+        <></>
       )}
     </>
   );
