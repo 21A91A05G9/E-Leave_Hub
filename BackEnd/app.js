@@ -13,6 +13,7 @@ import bodyParser from "body-parser";
 import student from "./routes/student.js";
 import hod from './routes/hod.js'
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const app=express();
@@ -24,16 +25,22 @@ app.use(cors({
   credentials: true // Enable set cookie from the server
 }));
 app.use(express.json());
-mongoose.connect(process.env.DATABASE_URL)
+
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  console.error('Error: DATABASE_URL is not defined in environment variables');
+  process.exit(1);
+}
+
+mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(5001))
   .then(() => console.log("Connected to Database & Listening to localhost 5001"))
   .catch((err) => console.log(err));
 
+  
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 app.use('/images', express.static(path.join(__dirname, 'images')));
-
-
 
 app.post('/formdata', async (req, res, next) => {
   console.log(req.body)
