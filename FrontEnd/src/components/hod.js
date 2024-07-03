@@ -19,7 +19,7 @@ export default function Hod() {
         
       try {
         const res = await axios.get(
-          `http://localhost:5001/dashboard/hod/requestCount/${id}`
+          `https://e-leave-hub-backend.vercel.app/dashboard/hod/requestCount/${id}`
         );
         setAcceptCount(res.data.accept);
         setRejectedCount(res.data.reject);
