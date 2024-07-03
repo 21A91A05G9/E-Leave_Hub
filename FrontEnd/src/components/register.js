@@ -22,7 +22,7 @@ function Register() {
     e.preventDefault();
     // console.log(formdata)
     axios
-      .post("https://e-leave-hub-backend.vercel.app/auth/student/register", formdata)
+      .post("http://localhost:5001/auth/student/register", formdata)
       .then((res) => {
         if (res.data.msg === "Successfully Registered")
           navigate("/studentlogin");

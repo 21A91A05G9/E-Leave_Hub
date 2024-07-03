@@ -17,7 +17,7 @@ export default function HodLogin() {
     const handleHODSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("https://e-leave-hub-backend.vercel.app/auth/hod/login", hodData);
+            const res = await axios.post("http://localhost:5001/auth/hod/login", hodData);
          
             if (res.data.msg === 'sucessfully login') {
                 sessionStorage.setItem('user', JSON.stringify(res.data.hod));

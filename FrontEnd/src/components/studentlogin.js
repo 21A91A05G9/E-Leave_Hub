@@ -15,7 +15,7 @@ export default function StudentLogin() {
   const handleSTUsubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://e-leave-hub-backend.vercel.app/auth/student/login", formdata) 
+      .post("http://localhost:5001/auth/student/login", formdata) 
       .then((res) => {
         if (res.data.msg === "sucessfully login") {
           setStr("Login successfully");

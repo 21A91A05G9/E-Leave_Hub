@@ -19,7 +19,7 @@ export default function Student() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `https://e-leave-hub-backend.vercel.app/dashboard/student/requestCount/${id}`
+          `http://localhost:5001/dashboard/student/requestCount/${id}`
         );
 
         setAcceptCount(res.data.accept);

@@ -45,8 +45,8 @@ app.post('/formdata', async (req, res, next) => {
     const reqId = user._id
     const f = new form({name,rollnum,fdate,tdate,email, hodEmail, reason,count});
 
-    const accept = `https://e-leave-hub-backend.vercel.app/dashboard/hod/accept/${reqId}`;
-    const reject = `https://e-leave-hub-backend.vercel.app/dashboard/hod/reject/${reqId}`
+    const accept = `http://localhost:5001/dashboard/hod/accept/${reqId}`;
+    const reject = `http://localhost:5001/dashboard/hod/reject/${reqId}`
     await f.save();
     const transporter = nodemailer.createTransport({
       service: 'gmail',
