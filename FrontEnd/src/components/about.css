@@ -7,7 +7,10 @@
   flex-direction: column;
   text-align: center;
 }
-
+.status{
+  height: 40%px;
+  width: 40%;
+}
 .txt {
   display: flex;
   justify-content: center;

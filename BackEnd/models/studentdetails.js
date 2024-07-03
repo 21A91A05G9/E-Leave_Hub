@@ -6,15 +6,17 @@ const student = new schema({
         type:String,
         required:true
     },
-    rollnum:{
+    rollNo:{
         type:String,
-        required:true
+        required:true,
+        unique : true
     },
-    uremail: {
+    email: {
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
-    phnum: {
+    phoneNo: {
         type:String,
         required:true
     },
@@ -22,21 +24,21 @@ const student = new schema({
         type:String,
         required:true
     },
-    clg:{
+    college:{
         type:String,
         required:true
     },
-    hodemail:{
+    hodEmail:{
         type:String,
         required:true
     },
-    pwd:{
+    password:{
         type:String,
         required:true
     },
     profile:{
         type:String,
-        required:true
+        required: true
     }
 })
 export default mongoose.model('studentdetails',student)

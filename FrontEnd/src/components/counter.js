@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
-import './counter.css';
+import React from "react";
+import "./counter.css";
 
 export default function Counter(props) {
-  useEffect(() => {
-    // $(document).ready(function(){
-    //     $('.counter-value').each(function(){
-    //         $(this).prop('Counter',0).animate({
-    //             Counter: $(this).text()
-    //         },{
-    //             duration: 3500,
-    //             easing: 'swing',
-    //             step: function (now){
-    //                 $(this).text(Math.ceil(now));
-    //             }
-    //         });
-    //     });
-    // });
-  }, []);
+  // useEffect(() => {
+  // $(document).ready(function(){
+  //     $('.counter-value').each(function(){
+  //         $(this).prop('Counter',0).animate({
+  //             Counter: $(this).text()
+  //         },{
+  //             duration: 3500,
+  //             easing: 'swing',
+  //             step: function (now){
+  //                 $(this).text(Math.ceil(now));
+  //             }
+  //         });
+  //     });
+  // });
+  // }, []);
 
   return (
     <div className="container mt-4">

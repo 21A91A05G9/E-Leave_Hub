@@ -22,6 +22,10 @@ const form = new schema({
         type:String,
         required:true
     },
+    hodEmail: {
+        type:String,
+        required:true
+    },
     reason:{
         type:String,
         required:true

@@ -1,10 +1,11 @@
 a{
     text-decoration: none;
 }
-.request{
+.request {
     background-image: url('../images/bg.png');
     background-size: cover;
 }
+
 .dash{
     display: flex;
     height: 100vh;
@@ -14,14 +15,23 @@ a{
    
     text-align: center;
 }
+.file{
+    width: 100%;
+}
+/* .form-control{
+    width: 100%;
+    height: 35px;
+    font-size: 16px;
+    box-sizing: border-box; 
+} */
 
 /* Add this CSS to your stylesheet */
 .circular-image, .profileCircle {
-    position: relative;
-    top: -20%;
+    padding: auto;
+    margin: auto;
     width: 100px; /* Adjust as needed */
     height: 100px; /* Adjust as needed */
-    border-radius: 50%;
+    border-radius: 100%;
     object-fit: cover; /* Ensures the image covers the entire circle */
 }
 
@@ -54,8 +64,18 @@ a{
 .box{
     height: 100vh;
 }
-h1{
+.wel{
     text-align: left;
+    padding: auto;
+    color: #058a59;
+}
+.offcanvas-title{
+    text-align: center;
+    background-color: rgb(240, 255, 250);
+    color: #03764c;
+    border-radius: 5px;
+    padding: 1px 10px;
+    font-weight: 700;
 }
 
 .req{
@@ -103,23 +123,12 @@ h1{
     font-size: 17px;;
 }
 .leavetitle{
-    color: #013d27;
+    color: #03764c;
     text-transform: capitalize;
 }
-.file{
-    background-color: #baf6e0;
-    border-radius: 10px;
-    align-items: center;
-   
-    text-align: center;
 
-}
-.file form{
-    line-height: 30px;
-}
-.filebtn{
-    padding: 0px;
-}
+
+
 @media screen and (max-width:990px){
     .counter{ margin-bottom: 40px; }
     .menuicon{
@@ -238,7 +247,7 @@ h1{
     .offcanvas{
        visibility:visible;
     }
-    xxx
+   
     .msg{
         position: relative;
         left: 35px;

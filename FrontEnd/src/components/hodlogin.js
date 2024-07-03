@@ -5,21 +5,26 @@ import '../App.css';
 import MainPage from './mainPage';
 
 export default function HodLogin() {
+   
     const navigate = useNavigate();
     const [message, setMessage] = useState('');
     const [hodData, setHodData] = useState({
         email: '',
-        pwd: ''
+        password: ''
     });
+    
 
     const handleHODSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("https://e-leave-hub-backend.vercel.app/handle_hod_login", hodData);
-            if (res.data.msg === 'Success') {
+            const res = await axios.post("http://localhost:5001/auth/hod/login", hodData);
+         
+            if (res.data.msg === 'sucessfully login') {
+                sessionStorage.setItem('user', JSON.stringify(res.data.hod));
+                sessionStorage.setItem('token', JSON.stringify(res.data.token));
                 setMessage("Login success");
-                navigate(`/hodDashboard/${res.data.id}`);
-            } else if (res.data.msg === 'thepassword is incorrect') {
+                navigate(`/hodDashboard/${res.data.hod._id}`);
+            } else if (res.data.msg === 'wrong password') {
                 setMessage("Incorrect password");
             } else {
                 setMessage("Invalid user");
@@ -42,7 +47,7 @@ export default function HodLogin() {
                             <div className="card-text">
                                 <center>
                                     <div style={{ color: message === "Invalid user" || message === "Incorrect password" ? "red" : "green" }}>
-                                        {message}
+                                        {message} &nbsp;
                                     </div>
                                 </center>
                                 <form onSubmit={handleHODSubmit}>
@@ -68,8 +73,8 @@ export default function HodLogin() {
                                                 className="form-control" 
                                                 id="inputPassword2" 
                                                 placeholder='Enter your password' 
-                                                value={hodData.pwd} 
-                                                onChange={(e) => setHodData({ ...hodData, pwd: e.target.value })} 
+                                                value={hodData.password} 
+                                                onChange={(e) => setHodData({ ...hodData, password: e.target.value })} 
                                                 required
                                             />
                                         </div>
@@ -79,7 +84,7 @@ export default function HodLogin() {
                                     </div>
                                 </form>
                                 <div className='text-center'>
-                                    Don't have an account? <Link to='/HODregister'>Register</Link> / <Link to='/studentlogin'>Student</Link>
+                                    Don't have an account? <Link to='/HODregister'>Register</Link> 
                                 </div>
                             </div>
                         </div>

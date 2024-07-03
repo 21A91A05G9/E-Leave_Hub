@@ -12,13 +12,25 @@
     gap: 10px;
     padding-top: 0px;
 }
-.maindiv{
+.maindiv, thead{
     padding: 10px;
     background-color: rgb(5, 81, 53);
+    border-radius: 5px;
 }
-.maindiv span{
+
+.hodTR{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    border-radius: 5px;
+    background-color: #beeada;
+}
+th, .maindiv span{
     color: white;
+    font-weight: 400 !important;
 }
+
 .details{
     box-shadow: 1px 1px 8px rgb(184, 184, 184), -1px -1px 8px rgb(184, 184, 184);
     background-color: #ddf1ea;
