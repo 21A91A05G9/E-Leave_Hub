@@ -12,7 +12,9 @@ import multer from "multer";
 import bodyParser from "body-parser";
 import student from "./routes/student.js";
 import hod from './routes/hod.js'
-import 'dotenv/config'
+import dotenv from 'dotenv';
+dotenv.config();
+
 const app=express();
 app.use(bodyParser.json())  // capture request
 
