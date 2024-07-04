@@ -20,7 +20,7 @@ const app=express();
 app.use(bodyParser.json())  // capture request
 
 app.use(cors({
-  origin: ['http://localhost:3000','https://e-leave-hub-front.vercel.app'], // Allow requests from this origin
+  origin: ['http://localhost:3000','https://e-leave-hub-frontend.vercel.app'], // Allow requests from this origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true // Enable set cookie from the server
 }));
@@ -33,14 +33,55 @@ if (!databaseUrl) {
 }
 
 mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(5001))
+  .then(() => app.listen(5000))
   .then(() => console.log("Connected to Database & Listening to localhost 5001"))
   .catch((err) => console.log(err));
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-app.use('/images', express.static(path.join(__dirname, 'images')));
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+  app.use('/images', express.static(path.join(__dirname, 'images')));
+
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'images/'); // Specify the destination folder for uploaded images
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)); // Specify the image name
+    },
+  });
+  
+  const upload = multer({ storage: storage });  
+  
+  app.post('/filedata/:id', upload.single('myfile'), async (req, res, next) => {
+    // console.log('Processing file upload request');
+    const _id = req.params.id;
+    const prof = req.file ? req.file.path : null;
+    console.log(req.body); // Log the request body for debugging
+
+    if (prof !== null) {
+        try {
+            console.log('Uploaded file path:', prof);
+
+            // Update the database with the path to the uploaded file
+            if (req.body.user === 'hod') {
+                await hoddetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
+            } else {
+                await studentdetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
+            }
+
+            res.status(200).send({ msg: "success", imageUrl: prof });
+        } catch (error) {
+            console.error('Error updating database:', error);
+            res.status(500).send({ msg: "error updating database", error });
+        }
+    } else {
+        res.status(400).send({ msg: "select an image to upload", imageUrl: null });
+    }
+});
+
+  
 
 app.post('/formdata', async (req, res, next) => {
   console.log(req.body)
@@ -113,42 +154,6 @@ app.use('/auth/hod',hod)
 app.use('/dashboard/hod',hod)
 
 
-
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'images/'); // Specify the destination folder for uploaded images
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)); // Specify the image name
-  },
-});
-
-const upload = multer({ storage: storage });
-
-
-app.post('/filedata/:id', upload.single('myfile'), async (req, res, next) => {
-  const _id = req.params.id;
-  const prof = (req.file) ? req.file.path : null;
-  
-  try {
-    if (prof) {
-      if (req.body.user === 'hod') {
-        await hoddetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
-      } else {
-        await studentdetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
-      }
-      console.log(prof);
-      res.send({ msg: "success", imageUrl: prof });
-    } else {
-      res.status(400).send({ msg: "select an image to upload", imageUrl: null });
-    }
-  } catch (error) {
-    console.error("Error uploading file:", error);
-    res.status(500).send({ msg: "Server error", error: error.message });
-  }
-});
 
 
 

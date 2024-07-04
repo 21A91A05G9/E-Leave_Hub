@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./student.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHomeUser, faUser, faCamera } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHomeUser,
+  faUser,
+  faCamera,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -19,49 +23,40 @@ export default function Sidebar({ id, renderReq, renderDash }) {
   }, [user]);
 
   useEffect(() => {
-    user && Object.keys(user).length === 9 ? setUser("hod") : setUser("student");
+    user && Object.keys(user).length === 9
+      ? setUser("hod")
+      : setUser("student");
   }, [user]);
 
   const navigate = useNavigate();
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (user) {
-      try {
-        const formData = new FormData();
-        formData.append("myfile", selectedFile);
-        formData.append("user", usr);
+    if(user) {
+    try {
+      const formData = new FormData();
+      formData.append("myfile", selectedFile);
+      formData.append("user", usr);
+      
+      const res = await axios.post(
+        `https://e-leave-hub.vercel.app/filedata/${id}`,
+        formData
+      );
+      console.log(res.data)
 
-        const res = await axios.post(
-          `https://e-leave-hub.vercel.app/filedata/${id}`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+      if (res.data.msg === "success") {
+        alert("Successfully Uploaded..!");
 
-        if (res.data.msg === "success") {
-          alert("Successfully Uploaded..!");
-          setImageUrl(res.data.imageUrl.replace(/\\/g, "/"));
-          user.profile = res.data.imageUrl.replace(/\\/g, "/");
-          sessionStorage.setItem("user", JSON.stringify(user));
-          setPopupVisible(false);
-        }
-      } catch (error) {
-        console.error("Error uploading file:", error);
-        if (error.response) {
-          console.log('Error Response:', error.response.data);
-          console.log('Error Status:', error.response.status);
-          console.log('Error Headers:', error.response.headers);
-        } else if (error.request) {
-          console.log('Error Request:', error.request);
-        } else {
-          console.log('Error Message:', error.message);
-        }
-        console.log('Error Config:', error.config);
+        // const blob = new Blob([selectedFile], { type: selectedFile.type });
+        // console.log(blob,res.data.imageUrl)
+        setImageUrl(res.data.imageUrl.replace(/\\/g, "/"));
+        user.profile = res.data.imageUrl.replace(/\\/g, "/");
+        sessionStorage.setItem("user", JSON.stringify(user));
+
+        setPopupVisible(false);
       }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
     }
   };
 
@@ -82,7 +77,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
     sessionStorage.removeItem("user");
     navigate("/");
   };
-
+  
   return (
     <div className="col-md-1 col-lg-1 col-xl-1 col-sm-1 col-xs-1  menu">
       <button
@@ -125,6 +120,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
                     <form onSubmit={handleSubmit}>
                       <div className="row">
                         <button className="btn-xs btn btn-light m-0 p-0">
+                          {" "}
                           <input
                             type="file"
                             name="myfile"
@@ -158,10 +154,14 @@ export default function Sidebar({ id, renderReq, renderDash }) {
                     />
                   ) : (
                     <>
-                      <FontAwesomeIcon icon={faUser} className="profileicon " />
-                      <br />
+                      {" "}
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        className="profileicon "
+                      />{" "}
+                      <br />{" "}
                     </>
-                  )}
+                  )}{" "}
                   <button className="camera" onClick={showPopup}>
                     <FontAwesomeIcon icon={faCamera} />
                   </button>
@@ -181,6 +181,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
           <Link className="row" onClick={renderReq}>
             Request
           </Link>
+          {/* <Link className='row' >Settings</Link> */}
           <Link className="row" onClick={logout}>
             Logout
           </Link>
