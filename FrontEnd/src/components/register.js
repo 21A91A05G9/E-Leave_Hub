@@ -21,18 +21,21 @@ function Register() {
   function handleSTUreg(e) {
     e.preventDefault();
     // console.log(formdata)
-    axios
-      .post("https://e-leave-hub.vercel.app/auth/student/register", formdata)
+    axios  
+      .post("http://localhost:5000/auth/student/register", formdata)
       .then((res) => {
+        console.log(res)
         if (res.data.msg === "Successfully Registered")
           navigate("/studentlogin");
         else if (res.data.msg === "fill all details")
           setStr("Fill All Details");
-        else setStr("User Already exits..");
+        else if (res.data.msg === "Already exits") 
+          setStr("User Already exits..");
+        else setStr("Error Occured..!")
       })
       .catch((error) => {
         console.error("Error:", error);
-        setStr("An error occurred");
+        setStr("Error Occured..!");
       });
   }
 
@@ -53,7 +56,8 @@ function Register() {
                     style={{
                       color:
                         str === "User Already exits.." ||
-                        str === "Fill All Details"
+                        str === "Fill All Details"  || 
+                        str === "Error Occured..!"
                           ? "red"
                           : "green",
                     }}

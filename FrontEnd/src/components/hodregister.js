@@ -21,10 +21,14 @@ function HODregister() {
     axios
       .post("https://e-leave-hub.vercel.app/auth/hod/register", hoddata)
       .then((res) => {
+        console.log(res.data.msg)
         if (res.data.msg === "Successfully Registered") nav("/hodlogin");
         else if (res.data.msg === "fill all details")
           setErrorMsg("Fill All Detail");
-        else setErrorMsg("User Already Exits");
+        else if (res.data.msg === "Already exits") 
+          setErrorMsg("User Already exits..");
+        else setErrorMsg("Error Occured..!")
+        
       })
       .catch((err) => {
         setErrorMsg(err.message);

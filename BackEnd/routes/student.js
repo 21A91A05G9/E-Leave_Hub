@@ -25,6 +25,7 @@ router.post(
     body("password").notEmpty(),
   ],
   async (req, res) => {
+  
     const result = validationResult(req);
     if (result.isEmpty()) {
       const salt = bcrypt.genSaltSync(10);
@@ -38,24 +39,28 @@ router.post(
         college: req.body.college,
         hodEmail: req.body.hodEmail,
         password: hash,
-        profile : null,
+        profile : "imageurl",
       });
-      const getStudent = await Student.findOne({ rollNo: req.body.rollNo });
-      if (getStudent) return res.send({ msg: "Already exits" }); // chack by   this way also
+      const getRollNo = await Student.findOne({ rollNo: req.body.rollNo });
+      const getEmail = await Student.findOne({ rollNo: req.body.email });
+      if (getRollNo || getEmail) return res.send({ msg: "Already exits" }); // chack by   this way also
 
-      var token = jwt.sign({ id: student._id }, JWT_SECRET);
+      let token = jwt.sign({ id: student._id }, JWT_SECRET);
       // console.log(token);
       try {
+        console.log(student)
         await student.save(); // error means email exists
         return res.send({ msg: "Successfully Registered", student: student });
       } catch (error) {
-        return res.send({ msg: "Already Exits" });
+        return res.send({ msg: "Error Occured" });
       }
     }
 
     return res.send({ errors: result.array(), msg: "fill all details" }); // if any one of the empty
   }
 );
+
+
 
 //login
 
@@ -91,27 +96,7 @@ router.post(
   }
 );
 
-// router.get('/getStudent/:id', async (req, res, next) => {
 
-//     try {
-//         const token = req.header("auth-token");
-//         if(!token) {
-//             return res.send("invalid token");
-//         }
-//         const data = jwt.verify(token, JWT_SECRET);
-
-//         const userId = data.id;
-//         const user = await User.findById(userId).select("-password");
-//         if (user) {
-//             res.send(user); // if any one of the empty
-//         }
-//     }
-//     catch(error) {
-//         res.send(error)
-//     }
-//     // next();
-
-//REQUEST ROUTE
 
 router.get("/requestCount/:id", async (req, res) => {
   const _id = req.params.id;
@@ -152,25 +137,3 @@ router.get("/fetchData/:id", async (req, res) => {
 
 export default router;
 
-
-// router.get('/getStudent/:id', async (req, res, next) => {
-
-//     try {
-//         const token = req.header("auth-token");
-//         if(!token) {
-//             return res.send("invalid token");
-//         }
-//         const data = jwt.verify(token, JWT_SECRET);
-
-//         const userId = data.id;
-//         const user = await User.findById(userId).select("-password");
-//         if (user) {
-//             res.send(user); // if any one of the empty
-//         }
-//     }
-//     catch(error) {
-//         res.send(error)
-//     }
-//     // next();
-
-// });
