@@ -8,14 +8,13 @@ import hoddetails from "./models/hoddetails.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import multer from "multer";
 import bodyParser from "body-parser";
 import student from "./routes/student.js";
 import hod from './routes/hod.js'
 import dotenv from 'dotenv';
 import multer from 'multer';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import multerS3 from 'multer-s3';
-import AWS from 'aws-sdk';
 
 dotenv.config();
 const app=express();
@@ -30,14 +29,15 @@ app.use(cors({
 app.use(express.json());
 
 app.use(bodyParser.json())  // capture request
-                                      
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION // e.g., 'us-east-1'
-});
+                       
 
-const s3 = new AWS.S3();
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  }
+});
 
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
@@ -56,17 +56,6 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
 
   app.use('/images', express.static(path.join(__dirname, 'images')));
 
-
-  const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'images/'); // Specify the destination folder for uploaded images
-    },
-    filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)); // Specify the image name
-    },
-  });
-  
   const upload = multer({
     storage: multerS3({
       s3: s3,
