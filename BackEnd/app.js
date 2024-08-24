@@ -17,14 +17,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app=express();
-app.use(bodyParser.json())  // capture request
-                                      
+
 app.use(cors({
-  origin: ['http://localhost:3000','https://e-leave-hub-frontend.vercel.app'], // Allow requests from this origin
+  origin: ['http://localhost:3000','https://e-leave-hub.vercel.app'], // Allow requests from this origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true // Enable set cookie from the server
+  credentials: true 
 }));
 app.use(express.json());
+
+app.use(bodyParser.json())  // capture request
+                                      
+
 
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
