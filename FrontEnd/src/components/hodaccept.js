@@ -8,7 +8,7 @@ export default function Hodaccept({ form }) {
     const con = window.confirm("Do you want to accept?");
     if (con) {
       try {
-        await axios.put(`https://e-leave-hub.vercel.app/dashboard/hod/accept/${reqId}`);
+        await axios.put(`${process.env.REACT_APP_NODE_API}/dashboard/hod/accept/${reqId}`);
       } catch (error) {
         console.error("Error accepting request:", error);
       }
@@ -19,7 +19,7 @@ export default function Hodaccept({ form }) {
     const con = window.confirm("Do you want to reject?");
     if (con) {
       try {
-        await axios.put(`https://e-leave-hub.vercel.app/dashboard/hod/reject/${reqId}`);
+        await axios.put(`${process.env.REACT_APP_NODE_API}/dashboard/hod/reject/${reqId}`);
       } catch (error) {
         console.error("Error rejecting request:", error);
       }

@@ -1,4 +1,3 @@
-
 export default function Studiv(props) {
     
     if (props.form.length > 0) {

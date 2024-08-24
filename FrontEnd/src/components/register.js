@@ -22,7 +22,7 @@ function Register() {
     e.preventDefault();
     // console.log(formdata)
     axios  
-      .post("http://localhost:5000/auth/student/register", formdata)
+      .post(`${process.env.REACT_APP_NODE_API}/auth/student/register`, formdata)
       .then((res) => {
         console.log(res)
         if (res.data.msg === "Successfully Registered")

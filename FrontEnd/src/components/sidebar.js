@@ -36,7 +36,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
       formData.append("image", selectedFile);
       formData.append("user", usr);
       console.log(selectedFile)
-      const res = await axios.post(`http://localhost:5000/filedata/${id}`,formData);
+      const res = await axios.post(`${process.env.REACT_APP_NODE_API}/filedata/${id}`,formData);
       console.log(res.data);
 
       if (res.data.msg === "success") {
@@ -142,7 +142,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
                 <>
                   {imageUrl !== "imageurl" ? (
                     <img
-                      src={`http://localhost:5000/${imageUrl}`}
+                      src={`${process.env.REACT_APP_NODE_API}/${imageUrl}`}
                       alt="profile"
                       className="profileicon circular-image"
                     />

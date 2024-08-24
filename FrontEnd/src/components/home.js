@@ -1,5 +1,4 @@
 import React from "react";
-import "./home.css";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +14,7 @@ export default function Home() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/handle_student_login", formdata)
+      .post(`${process.env.REACT_APP_NODE_API}/handle_student_login`, formdata)
       .then((res) => {
         alert(res.data.msg);
         const id = res.data.id;
@@ -34,7 +33,7 @@ export default function Home() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/handle_hod_login", hoddata)
+      .post(`${process.env.REACT_APP_NODE_API}/handle_hod_login`, hoddata)
       .then((res) => {
         alert(res.data.msg);
         const id = res.data.id;
