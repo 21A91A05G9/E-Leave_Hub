@@ -1,18 +1,20 @@
 import express from "express";
+import multer from "multer";
 import cors from "cors";
 import mongoose from "mongoose";
-import form from "./models/form.js";
-import nodemailer from 'nodemailer';
-import studentdetails from "./models/studentdetails.js";
-import hoddetails from "./models/hoddetails.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import multer from "multer";
-import bodyParser from "body-parser";
-import student from "./routes/student.js";
-import hod from './routes/hod.js'
 import dotenv from 'dotenv';
+import { S3Client } from "@aws-sdk/client-s3";
+import multerS3 from "multer-s3";
+import studentdetails from "./models/studentdetails.js";
+import hoddetails from "./models/hoddetails.js";
+import student from "./routes/student.js";
+import hod from './routes/hod.js';
+import bodyParser from "body-parser";
+import form from "./models/form.js";
+import nodemailer from 'nodemailer';
 
 dotenv.config();
 
@@ -44,33 +46,54 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
 
-  app.use('/images', express.static(path.join(__dirname, 'images')));
+  // app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
-  const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'images/'); // Specify the destination folder for uploaded images
-    },
-    filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)); // Specify the image name
-    },
+  // const storage = multer.diskStorage({
+  //   destination: function (req, file, cb) {
+  //     cb(null, 'images/'); // Specify the destination folder for uploaded images
+  //   },
+  //   filename: function (req, file, cb) {
+  //     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+  //     cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)); // Specify the image name
+  //   },
+  // });
+  
+  // const upload = multer({ storage: storage });
+
+  const s3 = new S3Client({
+    region: process.env.AWS_REGION,
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    }
   });
-  
-  const upload = multer({ storage: storage });
-  
+
+  const upload = multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: process.env.S3_BUCKET_NAME,
+      metadata: function (req, file, cb) {
+        cb(null, { fieldName: file.fieldname });
+      },
+      key: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, 'images/' + file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+      }
+    })
+  });
   
   app.post('/filedata/:id', upload.single('image'), async (req, res) => {
     console.log('Processing file upload request');
     const _id = req.params.id;
-    const prof = req.file ? req.file.path : null;
+    const prof = req.file ? req.file.location : null;  // Use location instead of path
     console.log(req.body); // Log the request body for debugging
   
     if (prof !== null) {
       try {
-        console.log('Uploaded file path:', prof);
+        console.log('Uploaded file URL:', prof);
   
-        // Update the database with the path to the uploaded file
+        // Update the database with the URL to the uploaded file
         if (req.body.user === 'hod') {
           await hoddetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
         } else {
@@ -86,8 +109,6 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
       res.status(400).send({ msg: "select an image to upload", imageUrl: null });
     }
   });
-  
-
   
 
 app.post('/formdata', async (req, res, next) => {

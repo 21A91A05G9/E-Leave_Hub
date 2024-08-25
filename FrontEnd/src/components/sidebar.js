@@ -16,7 +16,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
 
   useEffect(() => {
     if (user && user.profile !== "imageurl") {
-      setImageUrl(`${user.profile.replace(/\\/g, "/")}`);
+      setImageUrl(user.profile);
     }
   }, [user]);
 
@@ -32,18 +32,15 @@ export default function Sidebar({ id, renderReq, renderDash }) {
     if(user) {
     try {
       const formData = new FormData();
-      console.log(selectedFile);
       formData.append("image", selectedFile);
       formData.append("user", usr);
-      console.log(selectedFile)
       const res = await axios.post(`${process.env.REACT_APP_NODE_API}/filedata/${id}`,formData);
-      console.log(res.data);
-
+  
       if (res.data.msg === "success") {
         alert("Successfully Uploaded..!");
 
-        setImageUrl(res.data.imageUrl.replace(/\\/g, "/"));
-        user.profile = res.data.imageUrl.replace(/\\/g, "/");
+        setImageUrl(res.data.imageUrl);
+        user.profile = res.data.imageUrl;
         sessionStorage.setItem("user", JSON.stringify(user));
 
         setPopupVisible(false);
@@ -142,7 +139,7 @@ export default function Sidebar({ id, renderReq, renderDash }) {
                 <>
                   {imageUrl !== "imageurl" ? (
                     <img
-                      src={`${process.env.REACT_APP_NODE_API}/${imageUrl}`}
+                      src={`${imageUrl}`}
                       alt="profile"
                       className="profileicon circular-image"
                     />
