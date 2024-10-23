@@ -31,7 +31,7 @@ app.use(bodyParser.json())  // capture request
                                       
 
 
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = "mongodb+srv://Admin:Admin@fooddonation.fgysm.mongodb.net/";
 if (!databaseUrl) {
   console.error('Error: DATABASE_URL is not defined in environment variables');
   process.exit(1);
