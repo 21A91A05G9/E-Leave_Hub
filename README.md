@@ -95,7 +95,7 @@ Students can register and log in to submit leave requests.
 ## HOD Registration and Login:
 HODs can register and log in to view, approve, or reject student leave requests
 
-##View Leave Requests:
+## View Leave Requests:
 Students can track the status of their requests, and HODs have access to an interface for managing them.
 
 ### Project Structure
@@ -118,7 +118,7 @@ eLeaveHub/
 - obile App Development
 
 ### Contributing
-- Contributions are welcome! Please follow these steps:
+Contributions are welcome! Please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch:
