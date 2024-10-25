@@ -44,7 +44,7 @@ eLeave Hub is a leave management application designed to streamline the leave re
    cd eleave-hub
 2. **Backend Setup:**
 
-- Navigate to the backend folder:**
+- Navigate to the backend folder:
   ```bash
   cd eLeaveHub-Backend
   
@@ -53,8 +53,13 @@ eLeave Hub is a leave management application designed to streamline the leave re
   npm install
   
 - Set up environment variables as described below.
+  Create a `.env` file in both the backtend and add the following variables:
   ```bash
-
+   PORT=5000
+   MONGO_URI=your-mongodb-connection-string
+   JWT_SECRET=your-jwt-secret
+   GMAIL_USER=your-email@gmail.com
+   GMAIL_PASS=your-email-password
   
 3. **Frontend Setup:**
 
@@ -63,12 +68,13 @@ eLeave Hub is a leave management application designed to streamline the leave re
   cd ../eLeaveHub-Frontend
   
 - Install dependencies:
-  ```bash
+   ```bash
   npm install
   
 - Set up the frontend environment variables as described below.
+  Create a `.env` file in both the frontend and add the following variables:
   ```bash
-
+  REACT_APP_NODE_API=https://your-backend-url.com
   
 4. **Start the Application:**
 
@@ -80,36 +86,20 @@ eLeave Hub is a leave management application designed to streamline the leave re
   ```bash
   npm start
   
-## Environment Variables
 
-Create a `.env` file in both the frontend and backend directories and add the following variables:
+### Usage
 
-### Backend `.env`
-```bash
-PORT=5000
-MONGO_URI=your-mongodb-connection-string
-JWT_SECRET=your-jwt-secret
-GMAIL_USER=your-email@gmail.com
-GMAIL_PASS=your-email-password
-
-
-### Frontend .env
-  ```bash
-  REACT_APP_NODE_API=https://your-backend-url.com
-
-Usage
-Student Registration and Login:
-
+## Student Registration and Login:
 Students can register and log in to submit leave requests.
-HOD Registration and Login:
 
-HODs can register and log in to view, approve, or reject student leave requests.
-View Leave Requests:
+## HOD Registration and Login:
+HODs can register and log in to view, approve, or reject student leave requests
 
+##View Leave Requests:
 Students can track the status of their requests, and HODs have access to an interface for managing them.
-Project Structure
-plaintext
-Copy code
+
+### Project Structure
+
 eLeaveHub/
 ├── eLeaveHub-Frontend/   # React frontend
 │   ├── public/
@@ -120,32 +110,29 @@ eLeaveHub/
 │   ├── models/
 │   └── routes/
 └── docker-compose.yml     # Docker Compose file for running services
-Future Enhancements
-Dark Mode Support
-Password Recovery and Update Feature
-Enhanced Email-Based Approval System
-Mobile App Development
-Contributing
-Contributions are welcome! Please follow these steps:
 
-Fork the repository.
-Create a new branch:
-bash
-Copy code
-git checkout -b feature-branch-name
-Commit your changes:
-bash
-Copy code
-git commit -m 'Add some feature'
-Push to the branch:
-bash
-Copy code
-git push origin feature-branch-name
-Open a pull request.
-License
-This project is licensed under the MIT License.
+### Future Enhancements
+- Dark Mode Support
+- Password Recovery and Update Feature
+- Enhanced Email-Based Approval System
+- obile App Development
 
-sql
-Copy code
+### Contributing
+- Contributions are welcome! Please follow these steps:
 
-Feel free to copy and paste this directly into your README file! Let me know if you need any further adjustments.
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-branch-name
+   
+3. Commit your changes:
+   ```bash
+   git commit -m 'Add some feature'
+   
+4. Push to the branch:
+   ```bash
+   git push origin feature-branch-name
+   
+5. Open a pull request.
+   
+
