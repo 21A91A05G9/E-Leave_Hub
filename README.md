@@ -11,7 +11,7 @@ eLeave Hub is a leave management application designed to streamline the leave re
 - [Project Structure](#project-structure)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 - **Student Leave Requests:** Students can log in and submit leave requests easily.
@@ -23,18 +23,17 @@ eLeave Hub is a leave management application designed to streamline the leave re
 - **Calendar Integration:** Integrated calendar to view and manage leave requests effectively.
 
 ## Technology Stack
-- **Frontend:** [React.js](https://reactjs.org/), HTML, CSS, JavaScript
+- **Frontend:** [React.js](https://reactjs.org/), HTML, CSS, JavaScript, Bootstrap
 - **Backend:** [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/)
 - **Database:** [MongoDB](https://www.mongodb.com/)
-- **Deployment:** [Docker](https://www.docker.com/), [Vercel](https://vercel.com/) (frontend), [AWS S3](https://aws.amazon.com/s3/) (image storage)
+- **Deployment:**[Vercel](https://vercel.com/), [AWS S3](https://aws.amazon.com/s3/) (image storage)
 - **Email Notifications:** [Gmail SMTP](https://support.google.com/a/answer/176600?hl=en) (using Nodemailer)
 
 ## Installation
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) and npm
-- [MongoDB](https://www.mongodb.com/) or Docker
-- [Docker](https://www.docker.com/) (optional but recommended)
+- [MongoDB](https://www.mongodb.com/) 
 - [Vercel](https://vercel.com/) account (for frontend deployment)
 
 ### Steps
@@ -99,23 +98,26 @@ HODs can register and log in to view, approve, or reject student leave requests
 Students can track the status of their requests, and HODs have access to an interface for managing them.
 
 ### Project Structure
-
-eLeaveHub/
-├── eLeaveHub-Frontend/   # React frontend
-│   ├── public/
-│   └── src/
-├── eLeaveHub-Backend/    # Node/Express backend
-│   ├── config/
-│   ├── controllers/
-│   ├── models/
-│   └── routes/
-└── docker-compose.yml     # Docker Compose file for running services
+      Rule-Engine-With-AST/
+      ├── server/                   # Backend code
+      │   ├── controllers/          # API controllers
+      │   ├── models/               # Database models
+      │   ├── routes/               # API routes
+      │   ├── .env                  # Environment variables
+      │   ├── package.json          # Backend dependencies
+      │   └── App.js                # Backend entry point
+      ├── client/                   # Frontend code
+      │   ├── public/               # Public assets
+      │   ├── src/                  # React components and logic
+      │   ├── package.json          # Frontend dependencies
+      │   └── .env                  # Frontend environment variables
+      └── README.md                 # Project documentation
 
 ### Future Enhancements
 - Dark Mode Support
 - Password Recovery and Update Feature
 - Enhanced Email-Based Approval System
-- obile App Development
+- Mobile App Development
 
 ### Contributing
 Contributions are welcome! Please follow these steps:
