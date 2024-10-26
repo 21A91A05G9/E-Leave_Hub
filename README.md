@@ -1,4 +1,4 @@
-# eLeave Hub
+# eLeaveHub
 
 eLeave Hub is a leave management application designed to streamline the leave request process between students and Heads of Department (HOD). The system allows students to request leave online, and HODs can approve or reject requests directly. Built using the MERN stack (MongoDB, Express.js, React.js, and Node.js), eLeave Hub provides a seamless, responsive experience for users on both frontend and backend platforms.
 
@@ -40,12 +40,12 @@ eLeave Hub is a leave management application designed to streamline the leave re
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/your-username/eleave-hub.git
-   cd eleave-hub
+   cd E-Leave_Hub
 2. **Backend Setup:**
 
 - Navigate to the backend folder:
   ```bash
-  cd eLeaveHub-Backend
+  cd Backend
   
 - Install dependencies:
   ```bash
@@ -64,7 +64,7 @@ eLeave Hub is a leave management application designed to streamline the leave re
 
 - Navigate to the frontend folder:
   ```bash
-  cd ../eLeaveHub-Frontend
+  cd ../Frontend
   
 - Install dependencies:
    ```bash
@@ -98,15 +98,16 @@ HODs can register and log in to view, approve, or reject student leave requests
 Students can track the status of their requests, and HODs have access to an interface for managing them.
 
 ### Project Structure
-      Rule-Engine-With-AST/
-      ├── server/                   # Backend code
-      │   ├── controllers/          # API controllers
+      E-Leave_HubT/
+      ├── Backend/                  # Backend code
       │   ├── models/               # Database models
       │   ├── routes/               # API routes
+      │   ├── public/images         # API routes
       │   ├── .env                  # Environment variables
       │   ├── package.json          # Backend dependencies
       │   └── App.js                # Backend entry point
-      ├── client/                   # Frontend code
+      │   ├── vercel.json/          # Deeployment
+      ├── Frontend/                 # Frontend code
       │   ├── public/               # Public assets
       │   ├── src/                  # React components and logic
       │   ├── package.json          # Frontend dependencies
