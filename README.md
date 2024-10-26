@@ -86,18 +86,18 @@ eLeave Hub is a leave management application designed to streamline the leave re
   npm start
   
 
-### Usage
+## Usage
 
-## Student Registration and Login:
+### Student Registration and Login:
 Students can register and log in to submit leave requests.
 
-## HOD Registration and Login:
+### HOD Registration and Login:
 HODs can register and log in to view, approve, or reject student leave requests
 
-## View Leave Requests:
+### View Leave Requests:
 Students can track the status of their requests, and HODs have access to an interface for managing them.
 
-### Project Structure
+## Project Structure
       E-Leave_HubT/
       ├── Backend/                  # Backend code
       │   ├── models/               # Database models
@@ -114,13 +114,13 @@ Students can track the status of their requests, and HODs have access to an inte
       │   └── .env                  # Frontend environment variables
       └── README.md                 # Project documentation
 
-### Future Enhancements
+## Future Enhancements
 - Dark Mode Support
 - Password Recovery and Update Feature
 - Enhanced Email-Based Approval System
 - Mobile App Development
 
-### Contributing
+## Contributing
 Contributions are welcome! Please follow these steps:
 
 1. Fork the repository.
