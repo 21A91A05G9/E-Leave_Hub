@@ -87,15 +87,34 @@ eLeave Hub is a leave management application designed to streamline the leave re
   
 
 ## Usage
+![image](https://github.com/user-attachments/assets/266cde33-819d-4437-ac2b-2ffb851857d4)
 
 ### Student Registration and Login:
 Students can register and log in to submit leave requests.
 
+![image](https://github.com/user-attachments/assets/f0b54212-ceda-44d0-88f9-d14672c80f0e)
+
+![image](https://github.com/user-attachments/assets/e2bff92e-bcad-4959-82d7-c35c27470a3a)
+
+![image](https://github.com/user-attachments/assets/1efa3ce7-fd42-42e4-b09c-c002ee3bf720)
+
+
+
 ### HOD Registration and Login:
 HODs can register and log in to view, approve, or reject student leave requests
 
+![image](https://github.com/user-attachments/assets/5e009528-8e2a-4f21-abd1-11a3b0581bf8)
+
+![image](https://github.com/user-attachments/assets/ad4a0945-38cd-4e17-b362-718e24a4ad92)
+
+![image](https://github.com/user-attachments/assets/617dca46-4a1d-498d-b686-2668ee3dbe6b)
+
+
 ### View Leave Requests:
 Students can track the status of their requests, and HODs have access to an interface for managing them.
+
+
+
 
 ## Project Structure
       E-Leave_HubT/
