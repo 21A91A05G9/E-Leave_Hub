@@ -109,6 +109,9 @@ HODs can register and log in to view, approve, or reject student leave requests
 
 ![image](https://github.com/user-attachments/assets/617dca46-4a1d-498d-b686-2668ee3dbe6b)
 
+![image](https://github.com/user-attachments/assets/d021bb19-b799-40a0-9392-9e333c1b42d0)
+
+
 
 ### View Leave Requests:
 Students can track the status of their requests, and HODs have access to an interface for managing them.
