@@ -103,19 +103,20 @@ Students can register and log in to submit leave requests.
 ### HOD Registration and Login:
 HODs can register and log in to view, approve, or reject student leave requests
 
-![image](https://github.com/user-attachments/assets/5e009528-8e2a-4f21-abd1-11a3b0581bf8)
+![image](https://github.com/user-attachments/assets/8224e409-bf39-4a64-85e3-e382f9b02b94)
 
 ![image](https://github.com/user-attachments/assets/ad4a0945-38cd-4e17-b362-718e24a4ad92)
 
 ![image](https://github.com/user-attachments/assets/617dca46-4a1d-498d-b686-2668ee3dbe6b)
-
-![image](https://github.com/user-attachments/assets/d021bb19-b799-40a0-9392-9e333c1b42d0)
 
 
 
 ### View Leave Requests:
 Students can track the status of their requests, and HODs have access to an interface for managing them.
 
+![Uploading image.png…]()
+
+![image](https://github.com/user-attachments/assets/d021bb19-b799-40a0-9392-9e333c1b42d0)
 
 
 
