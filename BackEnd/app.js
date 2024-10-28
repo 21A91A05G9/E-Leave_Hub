@@ -49,55 +49,56 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
   // app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
-  // const storage = multer.diskStorage({
-  //   destination: function (req, file, cb) {
-  //     cb(null, 'images/'); // Specify the destination folder for uploaded images
-  //   },
-  //   filename: function (req, file, cb) {
-  //     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-  //     cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)); // Specify the image name
-  //   },
-  // });
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'images/'); // Specify the destination folder for uploaded images
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)); // Specify the image name
+    },
+  });
   
-  // const upload = multer({ storage: storage });
+  const upload = multer({ storage: storage });
 
-  const s3 = new S3Client({
-    region: process.env.AWS_REGION,
-    credentials: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    }
-  });
+  //  Uploading Images in S3 Bucket
 
-  const upload = multer({
-    storage: multerS3({
-      s3: s3,
-      bucket: process.env.S3_BUCKET_NAME,
-      metadata: function (req, file, cb) {
-        cb(null, { fieldName: file.fieldname });
-      },
-      key: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, 'images/' + file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-      }
-    })
-  });
+  // const s3 = new S3Client({
+  //   region: process.env.AWS_REGION,
+  //   credentials: {
+  //     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  //     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  //   }
+  // });
+
+  // const upload = multer({
+  //   storage: multerS3({
+  //     s3: s3,
+  //     bucket: process.env.S3_BUCKET_NAME,
+  //     metadata: function (req, file, cb) {
+  //       cb(null, { fieldName: file.fieldname });
+  //     },
+  //     key: function (req, file, cb) {
+  //       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+  //       cb(null, 'images/' + file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  //     }
+  //   })
+  // });
   
   app.post('/filedata/:id', upload.single('image'), async (req, res) => {
     console.log('Processing file upload request');
     const _id = req.params.id;
-    const prof = req.file ? req.file.location : null;  // Use location instead of path
+    const prof = req.file ? (req.file.path || req.file.location) : null;  // Use location instead of path
     console.log(req.body); // Log the request body for debugging
   
     if (prof !== null) {
       try {
         console.log('Uploaded file URL:', prof);
-  
-        // Update the database with the URL to the uploaded file
+      
         if (req.body.user === 'hod') {
-          await hoddetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
+          await hoddetails.findByIdAndUpdate(_id, { profile: prof  }, { new: true });
         } else {
-          await studentdetails.findByIdAndUpdate(_id, { profile: prof }, { new: true });
+          await studentdetails.findByIdAndUpdate(_id, { profile: prof  }, { new: true });
         }
   
         res.status(200).send({ msg: "success", imageUrl: prof });
