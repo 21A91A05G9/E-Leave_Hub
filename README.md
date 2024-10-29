@@ -1,6 +1,6 @@
 # eLeaveHub
 
-eLeave Hub is a leave management application designed to streamline the leave request process between students and Heads of Department (HOD). The system allows students to request leave online, and HODs can approve or reject requests directly. Built using the MERN stack (MongoDB, Express.js, React.js, and Node.js), eLeave Hub provides a seamless, responsive experience for users on both frontend and backend platforms.
+**eLeave Hub** is a leave management application designed to streamline the leave request process between students and Heads of Department (HOD). The system allows students to request leave online, and HODs can approve or reject requests directly. Built using the MERN stack (MongoDB, Express.js, React.js, and Node.js), eLeave Hub provides a seamless, responsive experience for users on both frontend and backend platforms.
 
 ## Table of Contents
 - [Features](#features)
@@ -33,7 +33,7 @@ eLeave Hub is a leave management application designed to streamline the leave re
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) and npm
-- [MongoDB](https://www.mongodb.com/) 
+- [MongoDB](https://www.mongodb.com/) installed and running, or use a MongoDB cloud service like MongoDB Atlas
 - [Vercel](https://vercel.com/) account (for frontend deployment)
 
 ### Steps
@@ -84,7 +84,8 @@ eLeave Hub is a leave management application designed to streamline the leave re
 - Start the frontend server:
   ```bash
   npm start
-  
+
+The backend will run on http://localhost:5000, and the frontend will run on http://localhost:3000 by default.
 
 ## Usage
 ![image](https://github.com/user-attachments/assets/266cde33-819d-4437-ac2b-2ffb851857d4)
@@ -125,7 +126,7 @@ Students can track the status of their requests, and HODs have access to an inte
       ├── Backend/                  # Backend code
       │   ├── models/               # Database models
       │   ├── routes/               # API routes
-      │   ├── public/images         # API routes
+      │   ├── public/images         # Public assets
       │   ├── .env                  # Environment variables
       │   ├── package.json          # Backend dependencies
       │   └── App.js                # Backend entry point
