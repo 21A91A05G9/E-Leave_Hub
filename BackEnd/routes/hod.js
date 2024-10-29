@@ -7,6 +7,7 @@ import form from "../models/form.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import 'dotenv/config'
+import nodemailer from 'nodemailer';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -128,10 +129,36 @@ router.put('/accept/:id', async (req, res) => {
       return res.status(404).json({ error: "Document not found" });
     }
 
-    // Send email implemetation
     const user = await form.findOne({ _id: id });
-    // sendEmail(user.email, 'ACCEPTED', user.name, user.reason);
+    
 
+    if (user) {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.USER_GMAIL,
+          pass: process.env.GOOGLE_SECRET_KEY
+        }
+      });
+
+      const mailOptions = {
+        from: process.env.USER_GMAIL,
+        to: user.email,
+        subject: 'Leave Request Accepted',
+        html: `
+          <p>
+            Dear ${user.name},<br/><br/>
+            Your leave request from ${user.fdate} to ${user.tdate} has been ACCEPTED.<br/><br/>
+            Thank you for your patience.<br/><br/>
+            Best Regards,
+            <br/>Your HOD
+          </p>
+        `
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log('Acceptance email sent: ' + user.email);
+    }
     res.send({ message: 'Document updated successfully' });
   } catch (error) {
     // console.error(error);
@@ -149,10 +176,37 @@ router.put('/reject/:id', async (req, res) => {
     }
 
     // Send email implemtation
+    // Send email to student
     const user = await form.findOne({ _id: id });
+    if (user) {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.USER_GMAIL,
+          pass: process.env.GOOGLE_SECRET_KEY
+        }
+      });
+
+      const mailOptions = {
+        from: process.env.USER_GMAIL,
+        to: user.email,
+        subject: 'Leave Request Rejected',
+        html: `
+          <p>
+            Dear ${user.name},<br/><br/>
+            Your leave request from ${user.fdate} to ${user.tdate} has been REJECTED.<br/><br/>
+            Please contact your HOD for further details.<br/><br/>
+            Best Regards,
+            <br/>Your HOD
+          </p>
+        `
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log('Rejection email sent: ' + user.email);
+    }
 
     
-    // sendEmail(user.email, 'REJECTED', user.name, user.reason);
 
     res.send({ message: 'Document updated successfully' });
   } catch (error) {

@@ -35,7 +35,7 @@ router.post(
         rollNo: req.body.rollNo,
         email: req.body.email,
         phoneNo: req.body.phoneNo,
-        branch: req.body.phoneNo,
+        branch: req.body.branch ,
         college: req.body.college,
         hodEmail: req.body.hodEmail,
         password: hash,
@@ -84,7 +84,7 @@ router.post(
       const checkPassword = await bcrypt.compare(password, student.password);
       if (!checkPassword) return res.send({ msg: "wrong password" });
       const token = jwt.sign({ id: student._id }, JWT_SECRET);
-      // console.log(token)
+      console.log(token, student)
       return res.send({
         msg: "sucessfully login",
         token: token,
