@@ -19,7 +19,7 @@
 - **Email Notifications:** HODs receive email notifications for incoming leave requests.
 - **Dashboard:** User-friendly dashboards for students and HODs.
 - **Responsive Design:** Works well on both desktop and mobile devices.
-- **Secure Authentication:** Secure login and registration using JWT for both students and HODs.
+- **Secure Authentication:** Secure login and registration using sessions for both students and HODs.
 - **Calendar Integration:** Integrated calendar to view and manage leave requests effectively.
 
 ## Technology Stack
