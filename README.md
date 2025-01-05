@@ -2,13 +2,68 @@
 
 **eLeave Hub** is a leave management application designed to streamline the leave request process between students and Heads of Department (HOD). The system allows students to request leave online, and HODs can approve or reject requests directly. Built using the MERN stack (MongoDB, Express.js, React.js, and Node.js), eLeave Hub provides a seamless, responsive experience for users on both frontend and backend platforms.
 
+## Usage
+![image](https://github.com/user-attachments/assets/266cde33-819d-4437-ac2b-2ffb851857d4)
+
+### Student Registration and Login:
+Students can register and log in to submit leave requests.
+
+![image](https://github.com/user-attachments/assets/f0b54212-ceda-44d0-88f9-d14672c80f0e)
+
+![image](https://github.com/user-attachments/assets/e2bff92e-bcad-4959-82d7-c35c27470a3a)
+
+![image](https://github.com/user-attachments/assets/1efa3ce7-fd42-42e4-b09c-c002ee3bf720)
+
+
+
+### HOD Registration and Login:
+HODs can register and log in to view, approve, or reject student leave requests
+
+![image](https://github.com/user-attachments/assets/8224e409-bf39-4a64-85e3-e382f9b02b94)
+
+![image](https://github.com/user-attachments/assets/ad4a0945-38cd-4e17-b362-718e24a4ad92)
+
+![image](https://github.com/user-attachments/assets/617dca46-4a1d-498d-b686-2668ee3dbe6b)
+
+
+
+### View Leave Requests:
+Students can track the status of their requests, and HODs have access to an interface for managing them.
+
+![image](https://github.com/user-attachments/assets/2c4e5b95-2bb5-418b-bd48-c586095cdc77)
+
+![image](https://github.com/user-attachments/assets/d021bb19-b799-40a0-9392-9e333c1b42d0)
+
+## Deploy Link
+
+https://e-leave-hub.vercel.app/
+
+## Project Structure
+      E-Leave_HubT/
+      ├── Backend/                  # Backend code
+      │   ├── models/               # Database models
+      │   ├── routes/               # API routes
+      │   ├── public/images         # Public assets
+      │   ├── .env                  # Environment variables
+      │   ├── package.json          # Backend dependencies
+      │   └── App.js                # Backend entry point
+      │   ├── vercel.json/          # Deeployment
+      ├── Frontend/                 # Frontend code
+      │   ├── public/               # Public assets
+      │   ├── src/                  # React components and logic
+      │   ├── package.json          # Frontend dependencies
+      │   └── .env                  # Frontend environment variables
+      └── README.md                 # Project documentation
+
+      
 ## Table of Contents
+- [Usage](#usage)
+- [Depoly Link](#deploy-link)
+- [Project Structure](#project-structure)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
 - [Environment Variables](#environment-variables)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 
@@ -87,56 +142,7 @@
 
 The backend will run on http://localhost:5000, and the frontend will run on http://localhost:3000 by default.
 
-## Usage
-![image](https://github.com/user-attachments/assets/266cde33-819d-4437-ac2b-2ffb851857d4)
 
-### Student Registration and Login:
-Students can register and log in to submit leave requests.
-
-![image](https://github.com/user-attachments/assets/f0b54212-ceda-44d0-88f9-d14672c80f0e)
-
-![image](https://github.com/user-attachments/assets/e2bff92e-bcad-4959-82d7-c35c27470a3a)
-
-![image](https://github.com/user-attachments/assets/1efa3ce7-fd42-42e4-b09c-c002ee3bf720)
-
-
-
-### HOD Registration and Login:
-HODs can register and log in to view, approve, or reject student leave requests
-
-![image](https://github.com/user-attachments/assets/8224e409-bf39-4a64-85e3-e382f9b02b94)
-
-![image](https://github.com/user-attachments/assets/ad4a0945-38cd-4e17-b362-718e24a4ad92)
-
-![image](https://github.com/user-attachments/assets/617dca46-4a1d-498d-b686-2668ee3dbe6b)
-
-
-
-### View Leave Requests:
-Students can track the status of their requests, and HODs have access to an interface for managing them.
-
-![image](https://github.com/user-attachments/assets/2c4e5b95-2bb5-418b-bd48-c586095cdc77)
-
-![image](https://github.com/user-attachments/assets/d021bb19-b799-40a0-9392-9e333c1b42d0)
-
-
-
-## Project Structure
-      E-Leave_HubT/
-      ├── Backend/                  # Backend code
-      │   ├── models/               # Database models
-      │   ├── routes/               # API routes
-      │   ├── public/images         # Public assets
-      │   ├── .env                  # Environment variables
-      │   ├── package.json          # Backend dependencies
-      │   └── App.js                # Backend entry point
-      │   ├── vercel.json/          # Deeployment
-      ├── Frontend/                 # Frontend code
-      │   ├── public/               # Public assets
-      │   ├── src/                  # React components and logic
-      │   ├── package.json          # Frontend dependencies
-      │   └── .env                  # Frontend environment variables
-      └── README.md                 # Project documentation
 
 ## Future Enhancements
 - Dark Mode Support
