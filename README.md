@@ -36,7 +36,7 @@ Students can track the status of their requests, and HODs have access to an inte
 
 ## Deploy Link
 
-https://e-leave-hub.vercel.app/
+You can check out the website of the eLeave Hub [here](https://e-leave-hub.vercel.app/).
 
 ## Project Structure
       E-Leave_HubT/
