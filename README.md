@@ -89,7 +89,6 @@ You can check out the website of the eLeave Hub [here](https://e-leave-hub.verce
 ### Prerequisites
 - [Node.js](https://nodejs.org/) and npm
 - [MongoDB](https://www.mongodb.com/) installed and running, or use a MongoDB cloud service like MongoDB Atlas
-- [Vercel](https://vercel.com/) account (for frontend deployment)
 
 ### Steps
 1. **Clone the repository:**
